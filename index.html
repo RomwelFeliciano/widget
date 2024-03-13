@@ -27,49 +27,54 @@
             id="vball">
         <img src="images/icons/hockey-icon.png" alt="hockey-icon" width="30" height="30" class="btn-icon" id="hockey">
     </div>
-    <iframe src="football.html" frameborder="0" width="700" height="257" id="widget-frame"></iframe>
+    <h1 class="text-white">Match</h1>
+    <iframe src="./widget-courts/football.html" frameborder="0" width="700" height="257"
+        id="widget-frame-court"></iframe>
+    <h1 class="text-white">Score Board</h1>
+    <iframe src="./widget-courts/football.html" frameborder="0" width="700" height="257"
+        id="widget-frame-scoreboard"></iframe>
 
     <script>
 
         // Football
         $(document).ready(function () {
             $("#fball").click(function () {
-                $('#widget-frame').attr('src', 'football.html');
+                $('#widget-frame-court').attr('src', './widget-courts/football.html');
             });
         });
 
         // Baseball
         $(document).ready(function () {
             $("#bsball").click(function () {
-                $('#widget-frame').attr('src', 'baseball.html');
+                $('#widget-frame-court').attr('src', './widget-courts/baseball.html');
             });
         });
 
         // Basketball
         $(document).ready(function () {
             $("#bball").click(function () {
-                $('#widget-frame').attr('src', 'basketball.html');
+                $('#widget-frame-court').attr('src', './widget-courts/basketball.html');
             });
         });
 
         // Tennis
         $(document).ready(function () {
             $("#tennis").click(function () {
-                $('#widget-frame').attr('src', 'tennis.html');
+                $('#widget-frame-court').attr('src', './widget-courts/tennis.html');
             });
         });
 
         // Volleyball
         $(document).ready(function () {
             $("#vball").click(function () {
-                $('#widget-frame').attr('src', 'volleyball.html');
+                $('#widget-frame-court').attr('src', './widget-courts/volleyball.html');
             });
         });
 
         // Ice Hockey
         $(document).ready(function () {
             $("#hockey").click(function () {
-                $('#widget-frame').attr('src', 'hockey.html');
+                $('#widget-frame-court').attr('src', './widget-courts/hockey.html');
             });
         });
 

@@ -17,6 +17,10 @@
     font-weight: 600;
 }
 
+.header-text {
+    font-size: 14px;
+}
+
 .icon {
     width: 24px;
     height: 24px;
