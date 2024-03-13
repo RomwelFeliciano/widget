@@ -37,7 +37,7 @@
 }
 
 .absolute-card {
-    width: 200px;
+    width: 180px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -60,11 +60,11 @@
 }
 
 .team-text:first-of-type {
-    padding-top: 25px;
+    padding-top: 15px;
 }
 
 .team-text:last-of-type {
-    padding-bottom: 25px;
+    padding-bottom: 15px;
 }
 
 .vs-text {
@@ -85,7 +85,7 @@
     color: white;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 
@@ -101,24 +101,24 @@
     }
 
     .absolute-card {
-        width: 130px;
+        width: 110px;
     }
 
     .team-text,
-    .vs-text,
-    .schedule-bg {
+    .vs-text {
         font-size: .7rem;
     }
 
     .team-text:first-of-type {
-        padding-top: 10px;
+        padding: 5px 0;
     }
 
     .team-text:last-of-type {
-        padding-bottom: 10px;
+        padding: 5px 0;
     }
 
     .schedule-bg {
+        font-size: .6rem;
         padding: 2px;
     }
 }
