@@ -8,6 +8,10 @@
 }
 
 .header-bg {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
     background-image: linear-gradient(to bottom right, #1E1E1E, #070707);
     color: white;
     font-weight: 600;
