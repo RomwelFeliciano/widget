@@ -43,7 +43,7 @@
                         <td class="total-score team-two"></td>
                     </tr>
                     <tr class="fw-bold">
-                        <td></td>
+                        <td>03-12-(운) 19:00</td>
                         <td class="total-score both-teams"></td>
                     </tr>
                 </tbody>
@@ -53,10 +53,10 @@
 
     <script>
         $(document).ready(function () {
-            const team1 = [5, 2, '', '', '', '', '', '', '', '', '', ''];
-            const team2 = [1, 2, '', '', '', '', '', '', '', '', '', ''];
+            const team1 = ['5', '2', '', '', '', '', '', '', '', '', '', ''];
+            const team2 = ['1', '2', '', '', '', '', '', '', '', '', '', ''];
 
-            const combinedScores = ['', '', '', '', '', '', '', '', '', '', '', ''];
+            const combinedScores = [];
 
             // Track the latest non-empty value in the array
             let teamOneHasLatestValue = false;
@@ -90,28 +90,22 @@
                 };
 
                 // Scoreboard Field Names
-
                 $.each(combinedScores, function (index, score) {
                     let nonEmptyIndex = -1;
                     for (let i = team1.length - 1; i >= 0; i--) {
                         if (team1[i] !== '' && team1[i] !== null) {
                             nonEmptyIndex = i;
-                            break; // Stop iterating once the first non-empty value is found
+                            break;
                         }
                     }
-
                     const newIndex = combinedScores.length - index
                     const isNotOT = nonEmptyIndex + 1 === newIndex ? 'current-active-game' : '';
                     const html = `<th class="${newIndex > 12 ? 'overtime' : isNotOT}">${newIndex > 12 ? '연장' : newIndex}</th>`
-
                     $('.title-field').after(html);
-
                 });
-
 
                 // Team 1
                 $.each(team1.reverse(), function (index, score) {
-                    console.log(score);
                     if (!teamOneHasLatestValue && (score !== '' && score !== null)) {
 
                         teamOneHasLatestValue = true;
@@ -151,7 +145,7 @@
                     }
                 });
 
-                // Total of the scores in table
+                // Totals of the scores in table
                 $.each(combinedScores.reverse(), function (index, score) {
 
                     if (!totalScoreHasLatestValue && (score !== '' && score !== null)) {
