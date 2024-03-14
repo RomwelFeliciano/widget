@@ -16,35 +16,35 @@
     <div class="d-flex flex-column">
         <div class="header-bg">
             <div class="d-flex justify-content-center align-items-center gap-2">
-                <img src="../images/flags/USA.png" alt="flag" class="icon">
-                <span class="header-text fw-light">NBA</span>
-                <span class="header-text fw-bold fst-italic">USA</span>
+                <img src="../images/flags/Japan.png" alt="flag" class="icon">
+                <span class="header-text fw-light">NPB - Pre-season</span>
+                <span class="header-text fw-bold fst-italic">EAST ASIA</span>
             </div>
-            <img src="../images/icons/baseball-icon.png" alt="baseball-icon" class="icon">
+            <img src="../images/icons/baseball-icon.png" alt="baseball" class="icon">
         </div>
         <div class="table-responsive">
             <table>
                 <thead>
                     <th>
                         <div class="d-flex justify-content-between px-2">
-                            <span>NPB-시범경기</span>
-                            <span class="team-title">연장 02:24</span>
+                            <span>INT CF</span>
+                            <span class="team-title">4`후반</span>
                         </div>
                     </th>
                     <th class="total-score title-field">경기중</th>
                 </thead>
                 <tbody>
                     <tr>
-                        <th class="text-center fs-6">시카고 불스</th>
-                        <td class="total-score team-one">10</td>
+                        <th class="text-center fs-6">히로시마</th>
+                        <td class="total-score team-one"></td>
                     </tr>
                     <tr>
-                        <td class="text-center fs-6">인디애나 페이서스</td>
-                        <td class="total-score team-two">4</td>
+                        <td class="text-center fs-6">니혼햄</td>
+                        <td class="total-score team-two"></td>
                     </tr>
                     <tr class="fw-bold">
-                        <td></td>
-                        <td class="total-score both-teams">14</td>
+                        <td>03-4-(운) 19:00</td>
+                        <td class="total-score both-teams"></td>
                     </tr>
                 </tbody>
             </table>
@@ -53,13 +53,32 @@
 
     <script>
         $(document).ready(function () {
-            const team1 = [31, 4, 21, 11, 22];
-            const team2 = [21, 4, 21, 11, 22];
+            // Basketball has 4 quarters, 5th above are overtime
+            const team1 = ['19', '', '', ''];
+            const team2 = ['14', '', '', ''];
 
             const combinedScores = [];
 
+            // Track the latest non-empty value in the array
+            let teamOneHasLatestValue = false;
+            let teamTwoHasLatestValue = false;
+            let totalScoreHasLatestValue = false;
+
             for (let i = 0; i < team1.length; i++) {
-                combinedScores.push(team1[i] + team2[i]);
+                // Parse integer values only when they are not empty
+                const parsedTeam1 = team1[i] !== '' && team1[i] !== null ? parseInt(team1[i]) : team1[i];
+                const parsedTeam2 = team2[i] !== '' && team2[i] !== null ? parseInt(team2[i]) : team2[i];
+
+                // Calculate the combined score
+                const score = parsedTeam1 + parsedTeam2;
+
+                // If the index is less than 4, update the corresponding element
+                if (i < 4) {
+                    combinedScores[i] = score;
+                } else {
+                    // If the index is greater than or equal to 4, push the score to the array
+                    combinedScores.push(score);
+                }
             }
 
             const displayTeamOneScores = function (teamOneScores, teamTwoScores) {
@@ -67,50 +86,83 @@
                 // Compute total scores
                 const totalScore = function (scores) {
                     return scores.reduce(function (acc, cur) {
-                        return acc + cur;
+                        return acc + (cur !== '' && !isNaN(cur) ? parseInt(cur) : 0);
                     }, 0);
                 };
 
                 // Scoreboard Field Names
                 $.each(combinedScores, function (index, score) {
-                    const reversedIndex = combinedScores.length - index;
-                    const isNotOT = combinedScores.length <= 4 ? 'current-active-game' : 'overtime';
-                    const html = `<th class="${reversedIndex === combinedScores.length ? isNotOT : null
-                        }">${reversedIndex > 4 ? '연장' : reversedIndex}</th>`
-
+                    let nonEmptyIndex = -1;
+                    for (let i = team1.length - 1; i >= 0; i--) {
+                        if (team1[i] !== '' && team1[i] !== null) {
+                            nonEmptyIndex = i;
+                            break;
+                        }
+                    }
+                    const newIndex = combinedScores.length - index
+                    const isNotOT = nonEmptyIndex + 1 === newIndex ? 'current-active-game' : '';
+                    const html = `<th class="${newIndex > 4 ? 'overtime' : isNotOT}">${newIndex > 4 ? '연장' : newIndex}</th>`
                     $('.title-field').after(html);
                 });
 
-
                 // Team 1
                 $.each(team1.reverse(), function (index, score) {
-                    const isNotOT = team1.length <= 4 ? 'current-active-game' : 'overtime';
-                    const isWinning = totalScore(team1) > totalScore(team2) ? 'winning' : 'losing';
-                    const html = `<td class="${index === 0 ? isNotOT : ''}">${score}</td>`
+                    if (!teamOneHasLatestValue && (score !== '' && score !== null)) {
 
-                    $('.team-one').after(html);
-                    $('.team-one').text(totalScore(team1));
-                    $('.total-score.team-one').addClass(isWinning)
+                        teamOneHasLatestValue = true;
+
+                        const isNotOT = team1.length > 4 ? 'overtime' : 'current-active-game';
+                        const isWinning = totalScore(team1) > totalScore(team2) ? 'winning' : 'losing';
+                        const html = `<td class="${isNotOT}">${score}</td>`
+
+                        $('.team-one').after(html);
+                        $('.team-one').text(totalScore(team1));
+                        $('.total-score.team-one').addClass(isWinning);
+                    } else {
+                        // Dont apply any class to previous values and falsy values
+                        const html = `<td class="">${score}</td>`
+                        $('.team-one').after(html);
+                    }
                 });
 
                 // Team 2
                 $.each(team2.reverse(), function (index, score) {
-                    const isNotOT = team2.length <= 4 ? 'current-active-game' : 'overtime';
-                    const isWinning = totalScore(team2) > totalScore(team1) ? 'winning' : 'losing';
-                    const html = `<td class="${index === 0 ? isNotOT : ''}">${score}</td>`
 
-                    $('.team-two').after(html);
-                    $('.team-two').text(totalScore(team2));
-                    $('.total-score.team-two').addClass(isWinning)
+                    if (!teamTwoHasLatestValue && (score !== '' && score !== null)) {
+
+                        teamTwoHasLatestValue = true;
+
+                        const isNotOT = team2.length > 4 ? 'overtime' : 'current-active-game';
+                        const isWinning = totalScore(team2) > totalScore(team1) ? 'winning' : 'losing';
+                        const html = `<td class="${isNotOT}">${score}</td>`
+
+                        $('.team-two').after(html);
+                        $('.team-two').text(totalScore(team2));
+                        $('.total-score.team-two').addClass(isWinning);
+                    } else {
+                        // Dont apply any class to previous values and falsy values
+                        const html = `<td class="">${score}</td>`
+                        $('.team-two').after(html);
+                    }
                 });
 
-                // Total of the scores in table
+                // Totals of the scores in table
                 $.each(combinedScores.reverse(), function (index, score) {
-                    const isNotOT = combinedScores.length <= 4 ? 'current-active-game' : 'overtime';
-                    const html = `<td class="${index === 0 ? isNotOT : ''}">${score}</td>`
 
-                    $('.both-teams').after(html);
-                    $('.both-teams').text(totalScore(combinedScores));
+                    if (!totalScoreHasLatestValue && (score !== '' && score !== null)) {
+
+                        totalScoreHasLatestValue = true;
+                        const reversedIndex = combinedScores.length - index;
+                        const isNotOT = combinedScores.length > 4 ? 'overtime' : 'current-active-game';
+                        const html = `<td class="${isNotOT}">${score}</td>`
+
+                        $('.both-teams').after(html);
+                        $('.both-teams').text(totalScore(combinedScores));
+                    } else {
+                        // Dont apply any class to previous values and falsy values
+                        const html = `<td class="">${score}</td>`
+                        $('.both-teams').after(html);
+                    }
                 });
             };
 
