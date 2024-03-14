@@ -7,6 +7,11 @@
     transform: scale(1.15);
 }
 
+.widget-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .header-bg {
     width: 100%;
     display: flex;
@@ -17,8 +22,28 @@
     font-weight: 600;
 }
 
+.league-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
 .header-text {
     font-size: 14px;
+}
+
+.header-text:first-of-type {
+    font-weight: lighter;
+}
+
+.header-text:last-of-type {
+    font-weight: 800;
+    font-style: italic;
+}
+
+.icon:first-child {
+    width: 30px;
 }
 
 .icon {
@@ -50,6 +75,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 4px;
     background-color: rgba(0, 0, 0, .66);
     border: 1px solid #999999;
     border-radius: 10px;
@@ -57,7 +83,7 @@
 
 .team-text {
     color: white;
-    font-size: 1.4rem;
+    font-size: 2.3rem;
     font-weight: 900;
     -webkit-text-stroke: .3px black;
     margin: 0;
@@ -72,10 +98,12 @@
 }
 
 .vs-text {
+    width: 100%;
     background-image: linear-gradient(to bottom, #FF1A1A, #FF6B00);
     background-clip: text;
+    text-align: center;
     color: transparent;
-    font-size: 1.8rem;
+    font-size: 2.7rem;
     font-style: italic;
     -webkit-text-stroke: 1.4px black;
     font-weight: 900;
@@ -89,7 +117,7 @@
     color: white;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 600;
 }
 
@@ -170,6 +198,10 @@ thead {
 .total-score.losing {
     font-size: 25px;
     color: #FF8A00;
+}
+
+.current-active-game {
+    background-color: #03546D;
 }
 
 .overtime {

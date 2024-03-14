@@ -31,7 +31,7 @@
     <iframe src="./widget-courts/football.html" frameborder="0" width="700" height="257"
         id="widget-frame-court"></iframe>
     <h1 class="text-white">Score Board</h1>
-    <iframe src="./widget-scoreboard/football-score.html" frameborder="0" width="700" height="257"
+    <iframe src="./widget-scoreboard/baseball-score.html" frameborder="0" width="700" height="257"
         id="widget-frame-scoreboard"></iframe>
 
     <script>
@@ -40,6 +40,7 @@
         $(document).ready(function () {
             $("#fball").click(function () {
                 $('#widget-frame-court').attr('src', './widget-courts/football.html');
+                $('#widget-frame-scoreboard').attr('src', './widget-scoreboard/football-score.html');
             });
         });
 
@@ -47,6 +48,7 @@
         $(document).ready(function () {
             $("#bsball").click(function () {
                 $('#widget-frame-court').attr('src', './widget-courts/baseball.html');
+                $('#widget-frame-scoreboard').attr('src', './widget-scoreboard/baseball-score.html');
             });
         });
 
@@ -54,6 +56,7 @@
         $(document).ready(function () {
             $("#bball").click(function () {
                 $('#widget-frame-court').attr('src', './widget-courts/basketball.html');
+                $('#widget-frame-scoreboard').attr('src', './widget-scoreboard/basketball-score.html');
             });
         });
 
