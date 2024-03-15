@@ -12,60 +12,61 @@
     flex-direction: column;
 }
 
-.header-bg {
+.widget-container .header-bg {
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 8px 12px;
-    background-image: linear-gradient(to bottom right, #1E1E1E, #070707);
+    background-image: linear-gradient(to top, #1E1E1E, #070707);
     color: white;
     font-weight: 600;
 }
 
-.league-container {
+.widget-container .header-bg .league-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
 }
 
-.header-text {
+.widget-container .header-text {
     font-size: 14px;
 }
 
-.header-text:first-of-type {
+.widget-container .header-text:first-of-type {
     font-weight: lighter;
 }
 
-.header-text:last-of-type {
+.widget-container .header-text:last-of-type {
     font-weight: 800;
     font-style: italic;
+    text-transform: uppercase;
 }
 
-.icon:first-child {
+.widget-container .icon:first-child {
     width: 30px;
 }
 
-.icon {
+.widget-container .icon {
     width: 24px;
     height: 24px;
 }
 
-.court-image-container {
+.widget-container .court-image-container {
     position: relative;
-    height: auto;
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.court-image {
+.widget-container .court-image-container .court-image {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
-.absolute-card {
+.widget-container .court-image-container .absolute-card {
     width: 180px;
     position: absolute;
     top: 50%;
@@ -81,7 +82,7 @@
     border-radius: 10px;
 }
 
-.team-text {
+.widget-container .team-text {
     color: white;
     font-size: 2.3rem;
     font-weight: 900;
@@ -89,15 +90,15 @@
     margin: 0;
 }
 
-.team-text:first-of-type {
+.widget-container .team-text:first-of-type {
     padding-top: 15px;
 }
 
-.team-text:last-of-type {
+.widget-container .team-text:last-of-type {
     padding-bottom: 15px;
 }
 
-.vs-text {
+.widget-container .vs-text {
     width: 100%;
     background-image: linear-gradient(to bottom, #FF1A1A, #FF6B00);
     background-clip: text;
@@ -109,7 +110,7 @@
     font-weight: 900;
 }
 
-.schedule-bg {
+.widget-container .schedule-bg {
     width: 100%;
     padding: 5px;
     text-align: center;
@@ -155,56 +156,104 @@
     }
 }
 
-table {
-    width: 100%;
-    height: 217px;
-    background-color: #10181D;
+.widget-container .court-image-container .absolute-table {
+    width: 95%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    background-color: rgba(0, 0, 0, .85);
     color: white;
 }
 
-thead,
-tr {
+.widget-container table {
+    width: 100%;
+    height: 200px;
+}
+
+.widget-container thead,
+.widget-container tr {
     text-align: center;
 }
 
-th,
-td {
+.widget-container .schedule-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+}
+
+.widget-container th,
+.widget-container td {
     padding: 5px;
-    border: 1px solid gray !important;
+    border: 1px solid #615d56 !important;
 }
 
-th {
+.widget-container th {
     font-size: 12px;
+    text-align: center;
 }
 
-thead {
+.widget-container thead {
     background-color: #1B1B1B;
     color: white;
 }
 
-.team-title {
+.widget-container .team-title {
     color: #FF0000;
 }
 
-.total-score {
+.widget-container .teams {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.widget-container .team-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.widget-container .vs {
+    width: 30px;
+}
+
+.widget-container .match-schedule {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.widget-container .total-score {
+    font-weight: 900;
+}
+
+.widget-container .title-field {
     color: #00B2FF;
-    font-weight: 800;
 }
 
-.total-score.winning {
+.widget-container .total-score.winning {
     font-size: 25px;
+    color: #00B2FF;
 }
 
-.total-score.losing {
+.widget-container .total-score.losing {
     font-size: 25px;
     color: #FF8A00;
 }
 
-.current-active-game {
+.widget-container .current-active-game {
     background-color: #042F9C;
 }
 
-.overtime {
+.widget-container .overtime {
     background-color: #6D0303;
     color: white;
 }

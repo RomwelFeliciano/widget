@@ -4,85 +4,136 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Baseball Scoreboard - Widget</title>
+    <title>Football Scoreboard - Widget</title>
     <link rel="stylesheet" href="../style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
-<body class="bg-light">
-    <div class="d-flex flex-column">
+<body>
+    <div class="widget-container">
         <div class="header-bg">
-            <div class="d-flex justify-content-center align-items-center gap-2">
-                <img src="../images/flags/Japan.png" alt="flag" class="icon">
-                <span class="header-text fw-light">NPB - Pre-season</span>
-                <span class="header-text fw-bold fst-italic">EAST ASIA</span>
+            <div class="league-container">
+                <img src="../images/flags/England.png" alt="flag" class="icon">
+                <span class="header-text">Premier League</span>
+                <span class="header-text">UK</span>
             </div>
-            <img src="../images/icons/baseball-icon.png" alt="baseball" class="icon">
+            <img src="../images/icons/football-icon.png" alt="football" class="icon">
         </div>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <th>
-                        <div class="d-flex justify-content-between px-2">
-                            <span>INT CF</span>
-                            <span class="team-title">4`후반</span>
-                        </div>
-                    </th>
-                    <th class="total-score title-field">경기중</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th class="text-center fs-6">히로시마</th>
-                        <td class="total-score team-one"></td>
-                    </tr>
-                    <tr>
-                        <td class="text-center fs-6">니혼햄</td>
-                        <td class="total-score team-two"></td>
-                    </tr>
-                    <tr class="fw-bold">
-                        <td>03-4-(운) 19:00</td>
-                        <td class="total-score both-teams"></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="court-image-container">
+            <img src="../images/courts/football.png" alt="court" class="court-image">
+            <div class="absolute-table">
+                <table>
+                    <thead>
+                        <th>
+                            <div class="schedule-field">
+                                <span>Football</span>
+                                <span class="team-title">후반</span>
+                            </div>
+                        </th>
+                        <th class="total-score title-field">경기중</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2">
+                                <div class="teams">
+                                    <h1 class="team-name">FC 힘키 (R)</h1>
+                                    <img src="../images/VS.png" alt="" class="vs">
+                                    <h1 class="team-name">Baltika-BFU Kaliningrad[27위]</h1>
+                                </div>
+                            </td>
+                            <td class="total-score team-one"></td>
+                        </tr>
+                        <tr>
+
+                            <td class="total-score team-two"></td>
+                        </tr>
+                        <tr>
+                            <td class="match-schedule">투구수 : 25</td>
+                            <td class="total-score both-teams"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
     <script>
         $(document).ready(function () {
-            // Football has 2 quarters, 3rd above are overtime
-            const team1 = ['19', '6', '3',];
-            const team2 = ['14', '16', '3',];
 
+            const match = [
+                {
+                    //teamOnePoints: ['2', 2, '1', 5, 3], test data
+                    teamOnePoints: ['2', 2, '1'],
+                },
+                {
+                    //teamTwoPoints: ['0', 1, '3', ,2, 1] test data
+                    teamTwoPoints: ['0', 1, '3']
+                }]
+
+            /* 
+            Innings of each sport
+            Football    - 2
+            Baseball    - 12
+            Basketball  - 4
+            Tennis      - 6
+            Volleyball  - 3
+            Ice Hockey  - 3
+            */
+            const sportsInnings = 2;
+
+            const scoresOfTeam1 = []
+            const scoresOfTeam2 = []
             const combinedScores = [];
+
+            // Loop for the default displayed innnings
+            for (let i = 0; i < sportsInnings; i++) {
+                scoresOfTeam1.push('')
+                scoresOfTeam2.push('')
+            }
+
+            const latestIteration = Math.max(match[0].teamOnePoints.length, match[1].teamTwoPoints.length);
+
+            // Replace the empty values of scores in both teams Math.max(match[0].teamOnePoints.length, match[1].teamTwoPoints.length)
+            for (let i = 0; i < (latestIteration > sportsInnings ? latestIteration : sportsInnings); i++) {
+                // Parsing scores and calculating combined score
+                const parsedTeam1 = parseInt(match[0].teamOnePoints[i]);
+                const parsedTeam2 = parseInt(match[1].teamTwoPoints[i]);
+
+                const score = parsedTeam1 + parsedTeam2;
+
+                // If the index is less than 12, update the corresponding element
+                if (i < sportsInnings) {
+                    scoresOfTeam1[i] = match[0].teamOnePoints[i] !== undefined ? match[0].teamOnePoints[i] : '';
+                    scoresOfTeam2[i] = match[1].teamTwoPoints[i] !== undefined ? match[1].teamTwoPoints[i] : '';
+                    combinedScores[i] = isNaN(score) ? '' : score;
+                } else {
+                    // If the index is greater than or equal to 12, push the score to the array
+                    scoresOfTeam1.push(match[0].teamOnePoints[i] !== undefined ? match[0].teamOnePoints[i] : '');
+                    scoresOfTeam2.push(match[1].teamTwoPoints[i] !== undefined ? match[1].teamTwoPoints[i] : '');
+                    combinedScores.push(isNaN(score) ? '' : score);
+                }
+            }
 
             // Track the latest non-empty value in the array
             let teamOneHasLatestValue = false;
             let teamTwoHasLatestValue = false;
             let totalScoreHasLatestValue = false;
 
-            for (let i = 0; i < team1.length; i++) {
-                // Parse integer values only when they are not empty
-                const parsedTeam1 = team1[i] !== '' && team1[i] !== null ? parseInt(team1[i]) : team1[i];
-                const parsedTeam2 = team2[i] !== '' && team2[i] !== null ? parseInt(team2[i]) : team2[i];
-
-                // Calculate the combined score
-                const score = parsedTeam1 + parsedTeam2;
-
-                // If the index is less than 2, update the corresponding element
-                if (i < 2) {
-                    combinedScores[i] = score;
-                } else {
-                    // If the index is greater than or equal to 2, push the score to the array
-                    combinedScores.push(score);
-                }
-            }
-
+            // Function to display the scores of matches in scoreboard
             const displayTeamOneScores = function (teamOneScores, teamTwoScores) {
-
                 // Compute total scores
                 const totalScore = function (scores) {
                     return scores.reduce(function (acc, cur) {
@@ -93,67 +144,64 @@
                 // Scoreboard Field Names
                 $.each(combinedScores, function (index, score) {
                     let nonEmptyIndex = -1;
-                    for (let i = team1.length - 1; i >= 0; i--) {
-                        if (team1[i] !== '' && team1[i] !== null) {
+                    for (let i = scoresOfTeam1.length - 1; i >= 0; i--) {
+                        if (scoresOfTeam1[i] !== '' && scoresOfTeam1[i] !== null && scoresOfTeam1[i] !== undefined) {
                             nonEmptyIndex = i;
                             break;
                         }
                     }
                     const newIndex = combinedScores.length - index
                     const isNotOT = nonEmptyIndex + 1 === newIndex ? 'current-active-game' : '';
-                    const html = `<th class="${newIndex > 2 ? 'overtime' : isNotOT}">${newIndex > 2 ? '연장' : newIndex}</th>`
+                    console.log(newIndex, nonEmptyIndex, index);
+                    const html = `<th class="${newIndex > sportsInnings && index === 0 ? 'overtime' : isNotOT}">${newIndex > sportsInnings ? '연장' : newIndex}</th>`
                     $('.title-field').after(html);
                 });
 
-                // Team 1
-                $.each(team1.reverse(), function (index, score) {
+                // Team 1 Row
+                $.each(scoresOfTeam1.reverse(), function (index, score) {
                     if (!teamOneHasLatestValue && (score !== '' && score !== null)) {
-
                         teamOneHasLatestValue = true;
 
-                        const isNotOT = team1.length > 2 ? 'overtime' : 'current-active-game';
-                        const isWinning = totalScore(team1) > totalScore(team2) ? 'winning' : 'losing';
+                        const isNotOT = scoresOfTeam1.length > sportsInnings ? 'overtime' : 'current-active-game';
+                        const isWinning = totalScore(scoresOfTeam1) > totalScore(scoresOfTeam2) ? 'winning' : 'losing';
                         const html = `<td class="${isNotOT}">${score}</td>`
 
                         $('.team-one').after(html);
-                        $('.team-one').text(totalScore(team1));
+                        $('.team-one').text(totalScore(scoresOfTeam1));
                         $('.total-score.team-one').addClass(isWinning);
                     } else {
                         // Dont apply any class to previous values and falsy values
-                        const html = `<td class="">${score}</td>`
+                        const html = `<td>${score}</td>`
                         $('.team-one').after(html);
                     }
                 });
 
-                // Team 2
-                $.each(team2.reverse(), function (index, score) {
-
+                // Team 2 Row
+                $.each(scoresOfTeam2.reverse(), function (index, score) {
                     if (!teamTwoHasLatestValue && (score !== '' && score !== null)) {
-
                         teamTwoHasLatestValue = true;
 
-                        const isNotOT = team2.length > 2 ? 'overtime' : 'current-active-game';
-                        const isWinning = totalScore(team2) > totalScore(team1) ? 'winning' : 'losing';
+                        const isNotOT = scoresOfTeam2.length > sportsInnings ? 'overtime' : 'current-active-game';
+                        const isWinning = totalScore(scoresOfTeam2) > totalScore(scoresOfTeam1) ? 'winning' : 'losing';
                         const html = `<td class="${isNotOT}">${score}</td>`
 
                         $('.team-two').after(html);
-                        $('.team-two').text(totalScore(team2));
+                        $('.team-two').text(totalScore(scoresOfTeam2));
                         $('.total-score.team-two').addClass(isWinning);
                     } else {
                         // Dont apply any class to previous values and falsy values
-                        const html = `<td class="">${score}</td>`
+                        const html = `<td>${score}</td>`
                         $('.team-two').after(html);
                     }
                 });
 
-                // Totals of the scores in table
+                // Totals of the scores Row
                 $.each(combinedScores.reverse(), function (index, score) {
-
                     if (!totalScoreHasLatestValue && (score !== '' && score !== null)) {
-
                         totalScoreHasLatestValue = true;
+
                         const reversedIndex = combinedScores.length - index;
-                        const isNotOT = combinedScores.length > 2 ? 'overtime' : 'current-active-game';
+                        const isNotOT = combinedScores.length > sportsInnings ? 'overtime' : 'current-active-game';
                         const html = `<td class="${isNotOT}">${score}</td>`
 
                         $('.both-teams').after(html);
@@ -166,7 +214,8 @@
                 });
             };
 
-            displayTeamOneScores(team1, team2);
+            // Call the function
+            displayTeamOneScores(scoresOfTeam1, scoresOfTeam2);
         });
     </script>
 

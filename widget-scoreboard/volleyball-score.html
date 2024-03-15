@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Baseball Scoreboard - Widget</title>
+    <title>Football Scoreboard - Widget</title>
     <link rel="stylesheet" href="../style.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -26,21 +26,21 @@
     <div class="widget-container">
         <div class="header-bg">
             <div class="league-container">
-                <img src="../images/flags/USA.png" alt="flag" class="icon">
-                <span class="header-text">NBA</span>
-                <span class="header-text">USA</span>
+                <img src="../images/flags/Europe.png" alt="flag" class="icon">
+                <span class="header-text">Champions League - Play Offs</span>
+                <span class="header-text">EUROPE</span>
             </div>
-            <img src="../images/icons/basketball-icon.png" alt="basketball" class="icon">
+            <img src="../images/icons/volleyball-icon.png" alt="volleyball" class="icon">
         </div>
         <div class="court-image-container">
-            <img src="../images/courts/basketball.png" alt="court" class="court-image">
+            <img src="../images/courts/volleyball.png" alt="court" class="court-image">
             <div class="absolute-table">
                 <table>
                     <thead>
                         <th>
                             <div class="schedule-field">
-                                <span>INT CF</span>
-                                <span class="team-title">12`후반</span>
+                                <span>Volleyball</span>
+                                <span class="team-title">후반</span>
                             </div>
                         </th>
                         <th class="total-score title-field">경기중</th>
@@ -49,9 +49,9 @@
                         <tr>
                             <td rowspan="2">
                                 <div class="teams">
-                                    <h1 class="team-name">시카고 불스</h1>
+                                    <h1 class="team-name">한국도로공사</h1>
                                     <img src="../images/VS.png" alt="" class="vs">
-                                    <h1 class="team-name">인디애나 페이서스</h1>
+                                    <h1 class="team-name">IBK기업은행</h1>
                                 </div>
                             </td>
                             <td class="total-score team-one"></td>
@@ -61,7 +61,7 @@
                             <td class="total-score team-two"></td>
                         </tr>
                         <tr>
-                            <td class="match-schedule">03-12-(운) 19:00</td>
+                            <td class="match-schedule">투구수 : 25</td>
                             <td class="total-score both-teams"></td>
                         </tr>
                     </tbody>
@@ -75,10 +75,12 @@
 
             const match = [
                 {
-                    teamOnePoints: ['2', 2, '1', 2],
+                    //teamOnePoints: ['2', 2, '1', 5, 3], test data
+                    teamOnePoints: ['14', 21, '28'],
                 },
                 {
-                    teamTwoPoints: ['0', 1, '3', 2]
+                    //teamTwoPoints: ['0', 1, '3', ,2, 1] test data
+                    teamTwoPoints: ['21', 16, '30']
                 }]
 
             /* 
@@ -90,7 +92,7 @@
             Volleyball  - 3
             Ice Hockey  - 3
             */
-            const sportsInnings = 4;
+            const sportsInnings = 3;
 
             const scoresOfTeam1 = []
             const scoresOfTeam2 = []
@@ -125,12 +127,10 @@
                 }
             }
 
-
             // Track the latest non-empty value in the array
             let teamOneHasLatestValue = false;
             let teamTwoHasLatestValue = false;
             let totalScoreHasLatestValue = false;
-
 
             // Function to display the scores of matches in scoreboard
             const displayTeamOneScores = function (teamOneScores, teamTwoScores) {
