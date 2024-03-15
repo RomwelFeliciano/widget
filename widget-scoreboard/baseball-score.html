@@ -53,38 +53,60 @@
 
     <script>
         $(document).ready(function () {
+
+            const match = [
+                {
+                    teamOnePoints: ['0', 2, '3'],
+                },
+                {
+                    teamTwoPoints: ['0', 2, '3']
+                }]
+
             // Baseball has 12 innings, 12th above are overtime
-            const dataArray = [4, 6, 8]
+            const sportsInnings = 12;
 
-            const team1 = ['5', '2', '', '', '', '', '', '', '', '', '', ''];
-            const team2 = ['1', '2', '', '', '', '', '', '', '', '', '', ''];
-
+            const scoresOfTeam1 = []
+            const scoresOfTeam2 = []
             const combinedScores = [];
+
+            // Loop for the default displayed innnings
+            for (let i = 0; i < sportsInnings; i++) {
+                scoresOfTeam1.push('')
+                scoresOfTeam2.push('')
+            }
+
+            const latestIteration = Math.max(match[0].teamOnePoints.length, match[1].teamTwoPoints.length);
+
+            // Replace the empty values of scores in both teams Math.max(match[0].teamOnePoints.length, match[1].teamTwoPoints.length)
+            for (let i = 0; i < (latestIteration > sportsInnings ? latestIteration : sportsInnings); i++) {
+                // Parsing scores and calculating combined score
+                const parsedTeam1 = parseInt(match[0].teamOnePoints[i]);
+                const parsedTeam2 = parseInt(match[1].teamTwoPoints[i]);
+
+                const score = parsedTeam1 + parsedTeam2;
+
+                // If the index is less than 12, update the corresponding element
+                if (i < sportsInnings) {
+                    scoresOfTeam1[i] = match[0].teamOnePoints[i] !== undefined ? match[0].teamOnePoints[i] : '';
+                    scoresOfTeam2[i] = match[1].teamTwoPoints[i] !== undefined ? match[1].teamTwoPoints[i] : '';
+                    combinedScores[i] = isNaN(score) ? '' : score;
+                } else {
+                    // If the index is greater than or equal to 12, push the score to the array
+                    scoresOfTeam1.push(match[0].teamOnePoints[i] !== undefined ? match[0].teamOnePoints[i] : '');
+                    scoresOfTeam2.push(match[1].teamTwoPoints[i] !== undefined ? match[1].teamTwoPoints[i] : '');
+                    combinedScores.push(isNaN(score) ? '' : score);
+                }
+            }
+
 
             // Track the latest non-empty value in the array
             let teamOneHasLatestValue = false;
             let teamTwoHasLatestValue = false;
             let totalScoreHasLatestValue = false;
 
-            for (let i = 0; i < team1.length; i++) {
-                // Parse integer values only when they are not empty
-                const parsedTeam1 = team1[i] !== '' && team1[i] !== null ? parseInt(team1[i]) : team1[i];
-                const parsedTeam2 = team2[i] !== '' && team2[i] !== null ? parseInt(team2[i]) : team2[i];
 
-                // Calculate the combined score
-                const score = parsedTeam1 + parsedTeam2;
-
-                // If the index is less than 12, update the corresponding element
-                if (i < 12) {
-                    combinedScores[i] = score;
-                } else {
-                    // If the index is greater than or equal to 12, push the score to the array
-                    combinedScores.push(score);
-                }
-            }
-
+            // Function to display the scores of matches in scoreboard
             const displayTeamOneScores = function (teamOneScores, teamTwoScores) {
-
                 // Compute total scores
                 const totalScore = function (scores) {
                     return scores.reduce(function (acc, cur) {
@@ -95,67 +117,64 @@
                 // Scoreboard Field Names
                 $.each(combinedScores, function (index, score) {
                     let nonEmptyIndex = -1;
-                    for (let i = team1.length - 1; i >= 0; i--) {
-                        if (team1[i] !== '' && team1[i] !== null) {
+                    for (let i = scoresOfTeam1.length - 1; i >= 0; i--) {
+                        if (scoresOfTeam1[i] !== '' && scoresOfTeam1[i] !== null && scoresOfTeam1[i] !== undefined) {
                             nonEmptyIndex = i;
                             break;
                         }
                     }
                     const newIndex = combinedScores.length - index
                     const isNotOT = nonEmptyIndex + 1 === newIndex ? 'current-active-game' : '';
-                    const html = `<th class="${newIndex > 12 ? 'overtime' : isNotOT}">${newIndex > 12 ? '연장' : newIndex}</th>`
+                    console.log(newIndex, nonEmptyIndex, index);
+                    const html = `<th class="${newIndex > sportsInnings && index === 0 ? 'overtime' : isNotOT}">${newIndex > sportsInnings ? '연장' : newIndex}</th>`
                     $('.title-field').after(html);
                 });
 
-                // Team 1
-                $.each(team1.reverse(), function (index, score) {
+                // Team 1 Row
+                $.each(scoresOfTeam1.reverse(), function (index, score) {
                     if (!teamOneHasLatestValue && (score !== '' && score !== null)) {
-
                         teamOneHasLatestValue = true;
 
-                        const isNotOT = team1.length > 12 ? 'overtime' : 'current-active-game';
-                        const isWinning = totalScore(team1) > totalScore(team2) ? 'winning' : 'losing';
+                        const isNotOT = scoresOfTeam1.length > sportsInnings ? 'overtime' : 'current-active-game';
+                        const isWinning = totalScore(scoresOfTeam1) > totalScore(scoresOfTeam2) ? 'winning' : 'losing';
                         const html = `<td class="${isNotOT}">${score}</td>`
 
                         $('.team-one').after(html);
-                        $('.team-one').text(totalScore(team1));
+                        $('.team-one').text(totalScore(scoresOfTeam1));
                         $('.total-score.team-one').addClass(isWinning);
                     } else {
                         // Dont apply any class to previous values and falsy values
-                        const html = `<td class="">${score}</td>`
+                        const html = `<td>${score}</td>`
                         $('.team-one').after(html);
                     }
                 });
 
-                // Team 2
-                $.each(team2.reverse(), function (index, score) {
-
+                // Team 2 Row
+                $.each(scoresOfTeam2.reverse(), function (index, score) {
                     if (!teamTwoHasLatestValue && (score !== '' && score !== null)) {
-
                         teamTwoHasLatestValue = true;
 
-                        const isNotOT = team2.length > 12 ? 'overtime' : 'current-active-game';
-                        const isWinning = totalScore(team2) > totalScore(team1) ? 'winning' : 'losing';
+                        const isNotOT = scoresOfTeam2.length > sportsInnings ? 'overtime' : 'current-active-game';
+                        const isWinning = totalScore(scoresOfTeam2) > totalScore(scoresOfTeam1) ? 'winning' : 'losing';
                         const html = `<td class="${isNotOT}">${score}</td>`
 
                         $('.team-two').after(html);
-                        $('.team-two').text(totalScore(team2));
+                        $('.team-two').text(totalScore(scoresOfTeam2));
                         $('.total-score.team-two').addClass(isWinning);
                     } else {
                         // Dont apply any class to previous values and falsy values
-                        const html = `<td class="">${score}</td>`
+                        const html = `<td>${score}</td>`
                         $('.team-two').after(html);
                     }
                 });
 
-                // Totals of the scores in table
+                // Totals of the scores Row
                 $.each(combinedScores.reverse(), function (index, score) {
-
                     if (!totalScoreHasLatestValue && (score !== '' && score !== null)) {
-
                         totalScoreHasLatestValue = true;
+
                         const reversedIndex = combinedScores.length - index;
-                        const isNotOT = combinedScores.length > 12 ? 'overtime' : 'current-active-game';
+                        const isNotOT = combinedScores.length > sportsInnings ? 'overtime' : 'current-active-game';
                         const html = `<td class="${isNotOT}">${score}</td>`
 
                         $('.both-teams').after(html);
@@ -168,7 +187,8 @@
                 });
             };
 
-            displayTeamOneScores(team1, team2);
+            // Call the function
+            displayTeamOneScores(scoresOfTeam1, scoresOfTeam2);
         });
     </script>
 

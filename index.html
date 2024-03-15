@@ -31,56 +31,43 @@
     <iframe src="./widget-courts/football.html" frameborder="0" width="700" height="257"
         id="widget-frame-court"></iframe>
     <h1 class="text-white">Score Board</h1>
-    <iframe src="./widget-scoreboard/football-score.html" frameborder="0" width="700" height="257"
+    <iframe src="./widget-scoreboard/baseball-score.html" frameborder="0" width="700" height="257"
         id="widget-frame-scoreboard"></iframe>
 
     <script>
-
-        // Football
         $(document).ready(function () {
             $("#fball").click(function () {
                 $('#widget-frame-court').attr('src', './widget-courts/football.html');
                 $('#widget-frame-scoreboard').attr('src', './widget-scoreboard/football-score.html');
             });
-        });
 
-        // Baseball
-        $(document).ready(function () {
+            // Baseball
             $("#bsball").click(function () {
                 $('#widget-frame-court').attr('src', './widget-courts/baseball.html');
                 $('#widget-frame-scoreboard').attr('src', './widget-scoreboard/baseball-score.html');
             });
-        });
 
-        // Basketball
-        $(document).ready(function () {
+            // Basketball
             $("#bball").click(function () {
                 $('#widget-frame-court').attr('src', './widget-courts/basketball.html');
                 $('#widget-frame-scoreboard').attr('src', './widget-scoreboard/basketball-score.html');
             });
-        });
 
-        // Tennis
-        $(document).ready(function () {
+            // Tennis
             $("#tennis").click(function () {
                 $('#widget-frame-court').attr('src', './widget-courts/tennis.html');
             });
-        });
 
-        // Volleyball
-        $(document).ready(function () {
+            // Volleyball
             $("#vball").click(function () {
                 $('#widget-frame-court').attr('src', './widget-courts/volleyball.html');
             });
-        });
 
-        // Ice Hockey
-        $(document).ready(function () {
+            // Ice Hockey
             $("#hockey").click(function () {
                 $('#widget-frame-court').attr('src', './widget-courts/hockey.html');
             });
         });
-
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
