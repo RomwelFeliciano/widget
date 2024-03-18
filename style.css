@@ -30,7 +30,7 @@
 }
 
 .widget-container .header-text {
-    font-size: 14px;
+    font-size: 2.5vw;
 }
 
 .widget-container .header-text:first-of-type {
@@ -44,12 +44,12 @@
 }
 
 .widget-container .icon:first-child {
-    width: 30px;
+    width: 8vw;
 }
 
 .widget-container .icon {
-    width: 24px;
-    height: 24px;
+    width: 5vw;
+    height: 5vw;
 }
 
 .widget-container .court-image-container {
@@ -138,9 +138,12 @@
 
 }
 
+/* Scoreboard CSS */
+
 .widget-container .court-image-container .absolute-table {
     width: 95%;
     height: 80%;
+    min-height: 110.125px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -157,6 +160,7 @@
 .widget-container table {
     width: 100%;
     height: 100%;
+
 }
 
 .widget-container thead,
@@ -168,17 +172,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 8px;
+    padding-top: .2rem !important;
+    padding: 0 1rem;
 }
 
 .widget-container th,
 .widget-container td {
-    padding: 5px;
+    padding: .5rem;
+    font-size: 2vw;
     border: 1px solid #615d56 !important;
 }
 
 .widget-container th {
-    font-size: 12px;
     text-align: center;
 }
 
@@ -200,17 +205,17 @@
 }
 
 .widget-container .team-name {
-    font-size: 16px;
+    font-size: 2vw;
     font-weight: bold;
     margin: 0;
 }
 
 .widget-container .vs {
-    width: 30px;
+    width: 10%;
 }
 
 .widget-container .match-schedule {
-    font-size: 12px;
+    font-size: 2vw;
     font-weight: bold;
 }
 
@@ -223,12 +228,12 @@
 }
 
 .widget-container .total-score.winning {
-    font-size: 25px;
+    font-size: 4vw;
     color: #00B2FF;
 }
 
 .widget-container .total-score.losing {
-    font-size: 25px;
+    font-size: 4vw;
     color: #FF8A00;
 }
 

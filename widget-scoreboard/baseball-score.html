@@ -104,9 +104,9 @@
 
             const latestIteration = Math.max(match[0].teamOnePoints.length, match[1].teamTwoPoints.length);
 
-            // Replace the empty values of scores in both teams Math.max(match[0].teamOnePoints.length, match[1].teamTwoPoints.length)
+            // Replace the empty values of scores in both teams
             for (let i = 0; i < (latestIteration > sportsInnings ? latestIteration : sportsInnings); i++) {
-                // Parsing scores and calculating combined score
+                // Always parseInt the scores to become a number and calculate it
                 const parsedTeam1 = parseInt(match[0].teamOnePoints[i]);
                 const parsedTeam2 = parseInt(match[1].teamTwoPoints[i]);
 
@@ -114,23 +114,24 @@
 
                 // If the index is less than 12, update the corresponding element
                 if (i < sportsInnings) {
+
                     scoresOfTeam1[i] = match[0].teamOnePoints[i] !== undefined ? match[0].teamOnePoints[i] : '';
                     scoresOfTeam2[i] = match[1].teamTwoPoints[i] !== undefined ? match[1].teamTwoPoints[i] : '';
                     combinedScores[i] = isNaN(score) ? '' : score;
-                } else {
-                    // If the index is greater than or equal to 12, push the score to the array
+                }
+                // If the index is greater than or equal to 12, push the score to the array
+                else {
+
                     scoresOfTeam1.push(match[0].teamOnePoints[i] !== undefined ? match[0].teamOnePoints[i] : '');
                     scoresOfTeam2.push(match[1].teamTwoPoints[i] !== undefined ? match[1].teamTwoPoints[i] : '');
                     combinedScores.push(isNaN(score) ? '' : score);
                 }
             }
 
-
             // Track the latest non-empty value in the array
             let teamOneHasLatestValue = false;
             let teamTwoHasLatestValue = false;
             let totalScoreHasLatestValue = false;
-
 
             // Function to display the scores of matches in scoreboard
             const displayTeamOneScores = function (teamOneScores, teamTwoScores) {
@@ -218,10 +219,6 @@
             displayTeamOneScores(scoresOfTeam1, scoresOfTeam2);
         });
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>

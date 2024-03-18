@@ -12,6 +12,175 @@
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 
+<style>
+    .flex-container {
+        width: 380px;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: rgba(0, 0, 0, .85);
+        color: white;
+    }
+
+    .flex-row-container {
+        width: 380px;
+        height: 480px;
+        display: flex;
+        background-color: rgba(0, 0, 0, .85);
+    }
+
+    .flex-col-item {
+        height: 100%;
+        flex: auto;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* .flex-col-item span {
+        height: 100%;
+        border: 1px solid #878A7F;
+        padding: 10px;
+    } */
+
+    .flex-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #878A7F;
+        background-color: #1B1B1B;
+        padding: .2rem .5rem;
+    }
+
+    .flex-title>* {
+        font-size: 1vw;
+        font-weight: bold;
+    }
+
+    .flex-title:last-child {
+        color: #FF0000;
+    }
+
+    .title-field {
+        font-size: 1vw;
+        border: 1px solid #878A7F;
+        background-color: #1B1B1B;
+        padding: .2rem .5rem;
+        font-weight: bold;
+    }
+
+    .title-field.total-score {
+        color: #00B2FF;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+    .versus {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        padding: .656rem;
+        border: 1px solid #878A7F;
+    }
+
+    .versus>* {
+        font-size: 2.5vw;
+    }
+
+    .versus img {
+        width: 10%;
+    }
+
+    .vs {
+        width: 10%;
+    }
+
+    .match-schedule {
+        font-size: 2.5vw;
+    }
+
+
+    /* Start */
+    .flex-container {
+        width: 380px;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: rgba(0, 0, 0, .85);
+        color: white;
+    }
+
+    .flex-col-item {
+        height: 6rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .field-name {
+        background-color: #1B1B1B;
+        font-weight: bold;
+    }
+
+    .item {
+        flex: 1;
+        border: 1px solid #878A7F;
+        font-size: 1.5vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .item.space {
+        display: flex;
+        justify-content: space-between;
+        padding-left: .5rem;
+        padding-right: .5rem;
+        align-items: center;
+    }
+
+    .item.merge {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 28%;
+    }
+
+    .date {
+        color: #FF0000;
+    }
+
+    .total-score {
+        color: #00B2FF;
+        font-weight: bold;
+    }
+
+    .total-score.winning,
+    .total-score.losing {
+        font-size: 3vw;
+    }
+
+    .total-score.winning {
+        color: #00B2FF;
+    }
+
+    .total-score.losing {
+        color: #FF8A00;
+    }
+
+    .current-active-game {
+        background-color: #042F9C;
+    }
+
+    .overtime {
+        background-color: #6D0303;
+    }
+</style>
+
 <body class="d-flex flex-column justify-content-center align-items-center gap-4 pt-4 bg-dark">
 
     <div class="d-flex justify-content-center gap-4">
@@ -29,6 +198,90 @@
     <h1 class="text-white">Match</h1>
     <iframe src="./widget-courts/football.html" frameborder="0" width="700" height="258"
         id="widget-frame-court"></iframe>
+
+    <!-- COL -->
+
+    <div class="flex-container">
+        <div class="flex-col-item">
+            <div class="flex-title title-field">
+                <h2>Football</h2>
+                <h2>후반
+                </h2>
+            </div>
+            <div class="versus">
+                <h2>FC 힘키 (R)</h2>
+                <img src="images/VS.png" alt="">
+                <h2>Baltika-BFU Kaliningrad[27위]</h2>
+            </div>
+            <span class="match-schedule">투구수 : 25</span>
+        </div>
+        <div class="flex-col-item">
+            <h2 class="title-field total-score">경기중</h2>
+            <span class="winning">9</span>
+            <span class="losing">7</span>
+            <span>16</span>
+        </div>
+        <div class="flex-col-item">
+            <h2 class="title-field">1</h2>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+        </div>
+        <div class="flex-col-item">
+            <h2 class="title-field">2</h2>
+            <span>5</span>
+            <span>4</span>
+            <span>9</span>
+        </div>
+        <div class="flex-col-item current-active-game">
+            <h2 class="title-field current-active-game">3</h2>
+            <span>5</span>
+            <span>2</span>
+            <span>7</span>
+        </div>
+    </div>
+
+    <!-- ROW  -->
+
+    <div class="flex-container">
+        <div class="flex-col-item">
+            <div class="item space field-name">
+                <span>Football</span>
+                <span class="date">후반</span>
+            </div>
+            <div class="item merge">
+                <span>히로시마</span>
+                <span>Vs</span>
+                <span>니혼햄</span>
+            </div>
+            <span class="item">투구수 : 25</span>
+        </div>
+        <div class="flex-col-item">
+            <span class="item total-score field-name">경기중</span>
+            <span class="item total-score winning">5</span>
+            <span class="item total-score losing">2</span>
+            <span class="item total-score">4</span>
+        </div>
+        <div class="flex-col-item">
+            <span class="item field-name">1</span>
+            <span class="item">2</span>
+            <span class="item">1</span>
+            <span class="item">3</span>
+        </div>
+        <div class="flex-col-item">
+            <span class="item field-name">2</span>
+            <span class="item">5</span>
+            <span class="item">3</span>
+            <span class="item">8</span>
+        </div>
+        <div class="flex-col-item current-active-game">
+            <span class="item field-name current-active-game">3</span>
+            <span class="item">7</span>
+            <span class="item">9</span>
+            <span class="item">16</span>
+        </div>
+    </div>
+
     <h1 class="text-white">Score Board</h1>
     <iframe src="./widget-scoreboard/football-score.html" frameborder="0" width="700" height="258"
         id="widget-frame-scoreboard"></iframe>
