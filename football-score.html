@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Football Scoreboard - Widget</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<style>
+    .widget-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .widget-container .header-bg {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 12px;
+        background-color: #010A0F;
+        color: white;
+        font-weight: 600;
+    }
+
+    .widget-container .header-bg .league-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .widget-container .header-text {
+        font-size: 2vw;
+        display: flex;
+    }
+
+    .widget-container .header-text:first-of-type {
+        font-weight: lighter;
+    }
+
+    .widget-container .header-text:last-of-type {
+        font-weight: 800;
+        font-style: italic;
+        text-transform: uppercase;
+    }
+
+    .widget-container .icon:first-child {
+        width: 5vw;
+    }
+
+    .widget-container .icon {
+        width: 3vw;
+        height: 3vw;
+    }
+
+    .widget-container .court-image-container {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .widget-container .court-image-container .court-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .shadow-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(6, 6, 6, .70);
+    }
+
+    /* Scoreboard */
+    .flex-container {
+        width: 90%;
+        height: 85%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, .70);
+        display: flex;
+        color: white;
+    }
+
+    .flex-col-item {
+        position: relative;
+        height: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .absolute-vs {
+        width: 8%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .flex-col-item:first-of-type {
+        flex: 3;
+    }
+
+    .field-name {
+        display: flex;
+        flex-direction: column;
+        background-color: #010A0F;
+        font-weight: bold;
+        font-size: 2vw !important;
+    }
+
+    .time {
+        color: #00FF38;
+    }
+
+    .item {
+        flex: 1;
+        border: .5px solid #427A8D;
+        font-size: 2.5vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .total-score {
+        color: #00B2FF;
+        font-weight: bold;
+        font-size: 4vw;
+    }
+
+    .total-score.winning {
+        color: #00B2FF;
+    }
+
+    .total-score.losing {
+        color: #FF8A00;
+    }
+
+    .flex-col-item .item:nth-child(1) {
+        border-top: 0;
+        border-bottom: 0;
+        border-right: 0;
+    }
+
+    .flex-col-item .item:nth-child(2),
+    .flex-col-item .item:nth-child(3),
+    .flex-col-item .item:nth-child(4) {
+        border-bottom: 0;
+        border-right: 0;
+    }
+
+    .flex-col-item:first-child .item:nth-child(1),
+    .flex-col-item:first-child .item:nth-child(2),
+    .flex-col-item:first-child .item:nth-child(3),
+    .flex-col-item:first-child .item:nth-child(4),
+    .flex-col-item:first-child .item:nth-child(5) {
+        border: none;
+    }
+</style>
+
+<body>
+    <div class="widget-container">
+        <div class="header-bg">
+            <div class="league-container">
+                <img src="../images/flags/England.png" alt="flag" class="icon">
+                <span class="header-text">Premier League</span>
+                <span class="header-text">UK</span>
+            </div>
+            <img src="../images/icons/football-icon.png" alt="football" class="icon">
+        </div>
+        <div class="court-image-container">
+            <img src="../images/courts/football.png" alt="court" class="court-image">
+            <div class="shadow-container">
+            </div>
+            <div class="flex-container">
+                <div class="flex-col-item">
+                    <span class="item field-name time">후반</span>
+                    <span class="item">히로시마</span>
+                    <img src="/images/prematch-vs.png" alt="" class="absolute-vs">
+                    <span class="item">니혼햄</span>
+                    <span class="item"></span>
+                </div>
+                <div class="flex-col-item">
+                    <span class="item field-name total-score">경기중</span>
+                    <span class="item total-score winning">7</span>
+                    <span class="item total-score losing">4</span>
+                    <span class="item">11</span>
+                </div>
+                <div class="flex-col-item">
+                    <span class="item field-name">1 <span>쿼터</span></span>
+                    <span class="item">2</span>
+                    <span class="item">1</span>
+                    <span class="item">3</span>
+                </div>
+                <div class="flex-col-item">
+                    <span class="item field-name">2 <span>쿼터</span></span>
+                    <span class="item">5</span>
+                    <span class="item">3</span>
+                    <span class="item">8</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -14,11 +14,36 @@
 
 <style>
     .flex-container {
-        width: 380px;
-        display: flex;
-        flex-wrap: wrap;
+        width: 580px;
+        height: 100%;
         background-color: rgba(0, 0, 0, .85);
         color: white;
+    }
+
+    .flex-container2 {
+        width: 480px;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .85);
+        color: white;
+    }
+
+    .flex-row-item {
+        display: flex;
+        width: 100%;
+    }
+
+    .item-row:first-child {
+        flex: 3;
+    }
+
+    .item-row {
+        flex: 1;
+        border: 1px solid #878A7F;
+        font-size: 1.2vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
     }
 
     .flex-row-container {
@@ -98,21 +123,26 @@
     }
 
     .match-schedule {
-        font-size: 2.5vw;
+        font-size: 1.5vw;
     }
 
 
     /* Start */
     .flex-container {
-        width: 380px;
+        width: 480px;
         display: flex;
         flex-wrap: wrap;
-        background-color: rgba(0, 0, 0, .85);
+        /* background-image: url(./images/courts/football.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain; */
+        background-color: rgba(0, 0, 0, .65);
         color: white;
     }
 
     .flex-col-item {
-        height: 6rem;
+        position: relative;
+        height: 8rem;
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -121,27 +151,61 @@
         overflow: hidden;
     }
 
+    .absolute-vs {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 60%;
+    }
+
+    .flex-col-item:first-of-type {
+        flex: 3;
+    }
+
     .field-name {
         background-color: #1B1B1B;
         font-weight: bold;
+        font-size: 1.2vw !important;
     }
 
     .item {
         flex: 1;
         border: 1px solid #878A7F;
-        font-size: 1.5vw;
+        font-size: 1.2vw;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
     }
 
-    .item.space {
+    .item.no-border-top {
+        border-top: 0;
+    }
+
+    .item.no-border-y {
+        border-top: 0;
+        border-bottom: 0;
+    }
+
+    .item.no-border-bot {
+        border-bottom: 0;
+        flex-basis: 3%;
+    }
+
+    .item.space,
+    .item-row.space {
         display: flex;
         justify-content: space-between;
-        padding-left: .5rem;
-        padding-right: .5rem;
         align-items: center;
+    }
+
+    .item-row span:first-child {
+        padding-left: 1rem;
+    }
+
+    .item-row span:last-child {
+        padding-right: 1rem;
     }
 
     .item.merge {
@@ -157,11 +221,12 @@
     .total-score {
         color: #00B2FF;
         font-weight: bold;
+        font-size: 2vw !important;
     }
 
     .total-score.winning,
     .total-score.losing {
-        font-size: 3vw;
+        font-size: 1.5vw;
     }
 
     .total-score.winning {
@@ -201,43 +266,34 @@
 
     <!-- COL -->
 
-    <div class="flex-container">
-        <div class="flex-col-item">
-            <div class="flex-title title-field">
-                <h2>Football</h2>
-                <h2>후반
-                </h2>
-            </div>
-            <div class="versus">
-                <h2>FC 힘키 (R)</h2>
-                <img src="images/VS.png" alt="">
-                <h2>Baltika-BFU Kaliningrad[27위]</h2>
-            </div>
-            <span class="match-schedule">투구수 : 25</span>
+    <div class="flex-container2">
+        <div class="flex-row-item">
+            <span class="item-row">12:00 | 1st Half</span>
+            <span class="item-row">Total</span>
+            <span class="item-row">1st Half</span>
+            <span class="item-row">2nd Half</span>
+            <span class="item-row">연장</span>
         </div>
-        <div class="flex-col-item">
-            <h2 class="title-field total-score">경기중</h2>
-            <span class="winning">9</span>
-            <span class="losing">7</span>
-            <span>16</span>
+        <div class="flex-row-item">
+            <span class="item-row">Team1</span>
+            <span class="item-row">5</span>
+            <span class="item-row">2</span>
+            <span class="item-row">1</span>
+            <span class="item-row">2</span>
         </div>
-        <div class="flex-col-item">
-            <h2 class="title-field">1</h2>
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
+        <div class="flex-row-item">
+            <span class="item-row">Team2</span>
+            <span class="item-row">8</span>
+            <span class="item-row">2</span>
+            <span class="item-row">5</span>
+            <span class="item-row">1</span>
         </div>
-        <div class="flex-col-item">
-            <h2 class="title-field">2</h2>
-            <span>5</span>
-            <span>4</span>
-            <span>9</span>
-        </div>
-        <div class="flex-col-item current-active-game">
-            <h2 class="title-field current-active-game">3</h2>
-            <span>5</span>
-            <span>2</span>
-            <span>7</span>
+        <div class="flex-row-item">
+            <span class="item-row">Schedule</span>
+            <span class="item-row">13</span>
+            <span class="item-row">4</span>
+            <span class="item-row">6</span>
+            <span class="item-row">3</span>
         </div>
     </div>
 
@@ -245,41 +301,36 @@
 
     <div class="flex-container">
         <div class="flex-col-item">
-            <div class="item space field-name">
-                <span>Football</span>
-                <span class="date">후반</span>
-            </div>
-            <div class="item merge">
-                <span>히로시마</span>
-                <span>Vs</span>
-                <span>니혼햄</span>
-            </div>
-            <span class="item">투구수 : 25</span>
+            <span class="item field-name date">12:00 | 2nd Half</span>
+            <span class="item no-border-bot">FC 힘키 (R)</span>
+            <span class="absolute-vs">VS</span>
+            <span class="item no-border-y">Baltika-BFU Kaliningrad[27위]</span>
+            <span class="item no-border-top"></span>
         </div>
         <div class="flex-col-item">
-            <span class="item total-score field-name">경기중</span>
-            <span class="item total-score winning">5</span>
-            <span class="item total-score losing">2</span>
-            <span class="item total-score">4</span>
+            <span class="item field-name">경기중</span>
+            <span class="item total-score winning">7</span>
+            <span class="item total-score losing">4</span>
+            <span class="item">11</span>
         </div>
         <div class="flex-col-item">
-            <span class="item field-name">1</span>
+            <span class="item field-name">1st Half</span>
             <span class="item">2</span>
             <span class="item">1</span>
             <span class="item">3</span>
         </div>
         <div class="flex-col-item">
-            <span class="item field-name">2</span>
+            <span class="item field-name">2nd Half</span>
             <span class="item">5</span>
             <span class="item">3</span>
             <span class="item">8</span>
         </div>
-        <div class="flex-col-item current-active-game">
-            <span class="item field-name current-active-game">3</span>
+        <!-- <div class="flex-col-item">
+            <span class="item field-name">연장</span>
             <span class="item">7</span>
             <span class="item">9</span>
             <span class="item">16</span>
-        </div>
+        </div> -->
     </div>
 
     <h1 class="text-white">Score Board</h1>
