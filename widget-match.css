@@ -1,0 +1,74 @@
+.widget-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.widget-container .court-image-container {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.widget-container .court-image-container .court-image {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.widget-container .court-image-container .absolute-card {
+	width: 30%;
+	height: 85%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: grid;
+	grid-template-columns: auto;
+	place-items: center;
+}
+
+.widget-container .match-container {
+	width: 100%;
+	height: 100%;
+	background-color: #010A0F;
+}
+
+.widget-container .team-text {
+	color: white;
+	font-size: .7vw;
+	font-weight: 900;
+	margin: 0;
+	text-align: center;
+	padding: 1rem 0;
+}
+
+.widget-container .vs-container {
+	width: 100%;
+	text-align: center;
+	border-top: 1px solid #042A40;
+	border-bottom: 1px solid #042A40;
+	padding: .2rem 0;
+}
+
+.widget-container .prematch-vs {
+	width: 15%;
+
+}
+
+.widget-container .schedule-bg {
+	width: 80%;
+	height: 100%;
+	min-height: 2rem;
+	font-size: .4vw;
+	padding: .2rem 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #0F2D37;
+	color: white;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	font-weight: 400;
+}
