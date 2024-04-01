@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Baseball Scoreboard - Widget</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</head>
+
+<style>
+    body {
+        background: #1E1E1E;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container-widget {
+        position: relative;
+        width: 620px;
+        height: 220px;
+        display: flex;
+        flex-direction: column;
+        background: #161616;
+        color: white;
+        padding: 10px 0;
+    }
+
+    .container-widget .icon-ball {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        top: 8px;
+        right: 8px;
+    }
+
+    .container-widget .container-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .container-widget .icon-flag {
+        width: 36px;
+        height: 22px;
+    }
+
+    .container-widget .container-league {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-style: italic;
+        gap: 10px;
+    }
+
+    .container-widget .league {
+        text-transform: capitalize;
+    }
+
+    .container-widget .continent {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .container-widget .container-summary {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -20px;
+        gap: 3vw;
+    }
+
+    .container-widget .container-home,
+    .container-widget .container-away {
+        width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 5px;
+    }
+
+    .container-widget .team-home,
+    .container-widget .team-away {
+        width: 70%;
+        text-align: center;
+    }
+
+    .container-widget .team-home-score,
+    .container-widget .team-away-score {
+        width: 30%;
+        font-weight: bold;
+        font-size: 50px;
+    }
+
+    .container-widget .team-home-score {
+        color: #00B2FF;
+        text-align: center;
+    }
+
+    .container-widget .team-away-score {
+        color: #FF9900;
+        text-align: center;
+    }
+
+    .container-widget .container-match {
+        position: relative;
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container-widget .current-round {
+        width: 70%;
+        background: #1E1E1E;
+        box-shadow: 0px 4px 7.3px 0px rgba(0, 0, 0, 0.4);
+        text-align: center;
+        padding: 2px 5px;
+        border-radius: 20px;
+        color: #8FFF00;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .container-widget .time {
+        position: absolute;
+        bottom: -18px;
+        font-size: 8px;
+    }
+
+    /* STYLE FOR CONTAINER SCOREBOARD */
+    .container-widget .container-scoreboard {
+        display: flex;
+    }
+
+    .container-widget .flex-col-item {
+        position: relative;
+        height: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .container-widget .flex-col-item:first-of-type {
+        flex: 2;
+    }
+
+    .container-widget .item {
+        font-size: 10px;
+        padding: 8px 0;
+    }
+
+    .container-widget .field-name {
+        color: #ffffff80;
+        border-top: 1px solid #25262C;
+        border-bottom: 1px solid #25262C;
+    }
+
+    .container-widget .home {
+        background: linear-gradient(270deg, rgba(0, 48, 75, 0) 1%, rgba(32, 175, 255, 1) 100%);
+    }
+
+    .container-widget .away {
+        background: linear-gradient(270deg, rgba(0, 48, 75, 0) 1%, rgba(255, 139, 32, 1) 100%);
+    }
+</style>
+
+<body>
+    <div class="container-widget">
+        <img src="/images/icons/baseball-icon.png" alt="icon" class="icon-ball">
+        <div class="container-header">
+            <img src="/images/flags/England.png" alt="flag" class="icon-flag">
+            <div class="container-league">
+                <span class="league">NPB - Pre-season</span>
+                <span class="continent">EAST ASIA</span>
+            </div>
+            <div class="container-summary">
+                <div class="container-home">
+                    <span class="team-home">히로시마</span>
+                    <span class="team-home-score">2</span>
+                </div>
+                <div class="container-match">
+                    <span class="current-round">4이닝</span>
+                    <span class="time">08:40</span>
+                </div>
+                <div class="container-away">
+                    <span class="team-away-score">13</span>
+                    <span class="team-away">니혼햄</span>
+                </div>
+            </div>
+        </div>
+        <div class="container-scoreboard">
+            <div class="flex-col-item">
+                <span class="item field-name">스포츠 팀</span>
+                <span class="item home">히로시마</span>
+                <span class="item away">니혼햄</span>
+            </div>
+            <div class="flex-col-item">
+                <span class="item field-name">경기중</span>
+                <span class="item total-score">3</span>
+                <span class="item total-score">0</span>
+            </div>
+            <div class="flex-col-item">
+                <span class="item field-name">1</span>
+                <span class="item">2</span>
+                <span class="item">1</span>
+            </div>
+            <div class="flex-col-item">
+                <span class="item field-name">2</span>
+                <span class="item">5</span>
+                <span class="item">3</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
