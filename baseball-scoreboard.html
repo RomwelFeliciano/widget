@@ -162,8 +162,8 @@
         overflow: hidden;
     }
 
-    .container-widget .flex-col-item:first-of-type {
-        flex: 2;
+    .container-widget .flex-5 {
+        flex: 4;
     }
 
     .container-widget .item {
@@ -175,6 +175,10 @@
         color: #ffffff80;
         border-top: 1px solid #25262C;
         border-bottom: 1px solid #25262C;
+    }
+
+    .container-widget .active-game {
+        color: #00FF38;
     }
 
     .container-widget .home {
@@ -198,7 +202,7 @@
             <div class="container-summary">
                 <div class="container-home">
                     <span class="team-home">히로시마</span>
-                    <span class="team-home-score">2</span>
+                    <span class="team-home-score">5</span>
                 </div>
                 <div class="container-match">
                     <span class="current-round">4이닝</span>
@@ -211,25 +215,35 @@
             </div>
         </div>
         <div class="container-scoreboard">
-            <div class="flex-col-item">
+            <div class="flex-col-item flex-5">
                 <span class="item field-name">스포츠 팀</span>
                 <span class="item home">히로시마</span>
                 <span class="item away">니혼햄</span>
             </div>
             <div class="flex-col-item">
                 <span class="item field-name">경기중</span>
-                <span class="item total-score">3</span>
-                <span class="item total-score">0</span>
+                <span class="item total-score">5</span>
+                <span class="item total-score">13</span>
             </div>
             <div class="flex-col-item">
                 <span class="item field-name">1</span>
                 <span class="item">2</span>
-                <span class="item">1</span>
+                <span class="item">4</span>
             </div>
             <div class="flex-col-item">
                 <span class="item field-name">2</span>
+                <span class="item">1</span>
+                <span class="item">2</span>
+            </div>
+            <div class="flex-col-item">
+                <span class="item field-name">3</span>
+                <span class="item">1</span>
                 <span class="item">5</span>
-                <span class="item">3</span>
+            </div>
+            <div class="flex-col-item">
+                <span class="item field-name active-game">4</span>
+                <span class="item">1</span>
+                <span class="item">2</span>
             </div>
         </div>
     </div>
